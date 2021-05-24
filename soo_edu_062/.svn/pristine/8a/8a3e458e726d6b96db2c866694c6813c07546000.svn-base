@@ -1,0 +1,310 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOO EDU</title>
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
+<script>
+	
+	// 주소 검색 팝업
+	function goPopup(){
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("/edu/jusoPopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		
+		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	}
+	// 선택한 주소 callback
+	function jusoCallBack(roadFullAddr,zipNo, addrDetail){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		console.log("roadFullAddr=" + roadFullAddr);
+		console.log("zipNo=" + zipNo);
+		console.log("addrDetail=" + addrDetail);
+		
+		document.registerForm.soo_user_zipcode.value= zipNo;
+		document.registerForm.soo_user_addr1.value= roadFullAddr;
+		document.registerForm.soo_user_addr2.value= addrDetail;
+		
+	}
+	
+	function chkInput() {
+		
+	}
+	function chkPW(e){
+
+	       var pw = $("#soo_user_pw").val();
+	       var num = pw.search(/[0-9]/g);
+	       var eng = pw.search(/[a-z]/ig);
+	       var eng1 = pw.search(/[A-Z]/ig);
+	   /*     var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); */
+	      
+	       if(!( (num < 0 && eng < 0 ) || ( eng < 0 && eng1 < 0 ) || ( num < 0 && eng1 < 0 ) )){
+	          alert("특수문자가 포함되어있습니다, 다시입력해주세요!!");
+	            document.registerForm.pw.focus();
+	          console.log("통과");   
+	          return false;
+	       }else {
+	          alert("영문,숫자를 혼합하여 입력해주세요.");
+	          $('#soo_user_pw').val('').focus();
+	          return false; 
+	         
+	       }
+	   }
+	    function chkEqualpw(){
+	      /*   
+	       var pwd1 = $("#soo_user_pw").val();
+	        var pwd2 = $("#soo_user_pw2").val();
+	        
+	        if ( pwd1 != '' && pwd2 == '' ) {
+	               null;
+	         } else if (pwd1 != "" || pwd2 != "") {
+	         if (pwd1 == pwd2) {
+	             alert("비밀번호가 일치합니다.");
+	         } else {
+	             alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+	         }
+	         */
+	         if(document.registerForm.u_pw.value != document.registerForm.u_pw2.value) {
+	               alert("비밀번호가 일치하지 않습니다 다시 확인해주세요!!!");
+	               document.joinform.u_pw2.focus();
+	               return false;
+	            }
+	        }
+	   /*
+	       if(pw.length < 10 || pw.length > 20){
+	        alert("10자리 ~ 20자리 이내로 입력해주세요.");
+	        return false;
+	       }else if(pw.search(/\s/) != -1){
+	        alert("비밀번호는 공백 없이 입력해주세요.");
+	        return false;
+	       }else if((num < 0 && eng < 0)){
+	        alert("영문,숫자를 혼합하여 입력해주세요.");
+	        return false;
+	       }else {
+	         console.log("통과");    
+	         
+	       }
+	   */
+	   }
+	   
+	   // focusout 이벤트
+	    document.addEventListener('focusout', function(e){
+	       
+	       if(e.target.id == 'soo_user_pw'){
+	          
+	          chkPW(); 
+	       }
+	       if(e.target.id == 'soo_user_pw2'){
+	           chkEqualpw();
+	       }
+	       /*
+	       if(e.target.id == 'username'){
+	          chkID(e);
+	       }
+	       if(e.target.id == 'name'){
+	          getName(e);
+	       }
+	       
+	       if(e.target.id == 'email'){ 
+	           chkEmail(e);
+	        
+	        }
+	       */
+	    })
+	    /*
+	    var birthExp = /^\d{8}$/;
+
+	    var birth = document.registerForm.soo_user_birth;
+	    
+	    if( !birthExp.test( birth.value ) ) {
+	       alert("생년월일은 숫자만 8자리 입력가능합니다");
+	       birth.value = "";
+	       birth.focus();
+	       return false;
+	    }
+	    */
+	     
+	    var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+
+</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header_wrap">
+			<div class="header">
+				<a href="/edu/index.do">HOME</a>
+			</div>
+		</div>
+		<div class="content_wrap">
+			<div class="sidebar">
+				<div class="logo">
+					<a href="/edu/index.do"><img
+						src="${pageContext.request.contextPath}/resources/img/common/logo.png" /></a>
+				</div>
+				<div class="user">
+					<!-- 로그인 -->
+					<div class="login_wrap">
+						<div class="input_wrap">
+							<label for="id">id</label> <input type="text" id="id"
+								placeholder="id" /> <label for="pw">pw</label> <input
+								type="password" id="pw" placeholder="pw" />
+						</div>
+						<button>로그인</button>
+						<a href="/edu/register.do">· 회원가입</a> <a href="#none">· ID/PW
+							찾기</a>
+					</div>
+					<!-- //로그인 -->
+					<!-- 접속정보 -->
+					<div class="user_status" style="display: none;">
+						<div class="img">
+							<img
+								src="${pageContext.request.contextPath}/resources/img/common/user.png" />
+						</div>
+						<div class="info">
+							<p>환영합니다!</p>
+							<p class="name">
+								<span>홍길동</span>님
+							</p>
+							<p>
+								최근접속일 <span>2020.04.30 10:48</span>
+							</p>
+						</div>
+					</div>
+					<!-- //접속정보 -->
+				</div>
+				<!-- 메뉴(활성화시 li태그에 클래스'on' 추가) -->
+				<div class="menu">
+					<ul>
+						<li><a href="/edu/board.do">공지사항</a></li>
+						<li><a href="#none">API</a>
+							<ul class="depth">
+								<li><a href="/edu/papago.do">파파고</a></li>
+								<li><a href="/edu/shop.do">카카오페이</a></li>
+							</ul></li>
+						<li><a href="#none">문의하기</a></li>
+						<li><a href="#none">상품보기</a></li>
+						<li><a href="#none">마이페이지</a></li>
+					</ul>
+				</div>
+				<!-- //메뉴 -->
+			</div>
+			<div class="contents">
+
+				<form action="/user/registers.do" name="registerForm" method="post" onsubmit="return chkInput();>
+					<h1 class="title">회원가입</h1>
+<!-- 
+					<div class="table_detail_wrap"> -->
+						<table>
+							<tbody>
+								<tr>
+									<th>이름</th>
+									<td colspan="2">
+										<input type="text" name="soo_user_name" />
+									</td>
+
+									<th>생년월일</th>
+									<td colspan="3">
+										<input type="text" name="soo_user_birth" placeholder="ex)19990901"  />
+									</td> 
+										<!-- pattern="[0-9]{6}" title="'yyyymmdd'와 같은 8자리 숫자" -->
+								</tr>
+								
+								<tr>
+									<th>핸드폰번호</th>
+									<td colspan="2">
+										<input type="tel" name="soo_user_phone" placeholder="ex)010-0000-0000" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required/>
+									</td>
+									<th>이메일주소</th>
+									<td colspan="2">
+										<input type="text" name="soo_user_mail" />
+									</td>
+									<td colspan="1">	
+										<select name="soo_user_mail2">
+											<option>선택</option>
+											<option value="@naver.com">@naver.com</option>
+											<option value="@google.com">@google.com</option>
+										</select>
+									</td>
+									
+									<td colspan="1">
+										<input type="checkbox" onClick="this.form.textbox.disabled=false" />
+									</td>
+									<td clospan="2">	
+										<input type="text" id="textbox" placeholder="직접입력" disabled  />
+									</td>
+								</tr>
+							
+								<tr>
+									<th>주소</th>
+									<td colspan="1">
+										<input type="text" name="soo_user_zipcode" id="soo_user_zipcode" placeholder="우편번호" readonly/>
+									</td>
+									<td colspan="2" >
+										<input type="text" name="soo_user_addr1" id="soo_user_addr1" placeholder="검색주소" readonly/>
+									</td>
+									
+									<td>
+										<input type="button" onClick="goPopup();" value="우편번호검색"/>
+									</td>
+								</tr>
+								
+								<tr>
+									<th></th>
+									<td colspan="5">
+										<input type="text" name="soo_user_addr2" placeholder="나머지주소" />
+									</td>
+								</tr>
+								
+								<tr>
+									<th>닉네임</th>
+									<td colspan="5">
+										<input type="text" name="soo_user_nick" />
+									</td>
+								</tr>
+								
+								<tr>
+									<th>비밀번호</th>
+									<td colspan="5">
+										<input type="password" id="soo_user_pw" name="soo_user_pw" autocomplete="false"/>
+									</td>
+								</tr>
+								
+								<tr>
+									<th>비밀번호확인</th>
+									<td colspan="5">
+										<input type="password" id="soo_user_pw2" name="soo_user_pw2" autocomplete="false"/>
+									</td>
+								</tr>
+								
+								<tr>
+									<th></th>
+									<td colspan="5"><input type="text" /></td>
+								</tr>
+								
+								<tr>
+							</tbody>
+						</table>
+						
+					<div class="btn_wrap right">
+						<a href="#none" class="btn">목록으로</a>
+						<button type="submit" class="btn write">저장</button>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

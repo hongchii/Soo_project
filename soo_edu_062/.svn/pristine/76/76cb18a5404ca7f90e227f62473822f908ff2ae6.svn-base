@@ -1,0 +1,39 @@
+package com.soo.projectmain;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.soo.projectboard.Soo_projectBoardVO;
+
+
+
+@Controller
+public class Soo_projectMainController {
+	
+	@Resource(name = "Soo_projectMainService")
+	private Soo_projectMainService service;
+	
+	@RequestMapping(value = "/soo_project_main/soo_project_main.do")
+	public String soo_project_main(ModelMap model, Soo_projectMainVO vo) throws Exception {
+		
+		return "views/sooproject_main";
+		
+	}
+	@RequestMapping(value = "/test/mvcPattern.do")
+	public String test() throws Exception{
+		
+		return "views/user/list";
+	}
+	
+	
+	
+	
+}

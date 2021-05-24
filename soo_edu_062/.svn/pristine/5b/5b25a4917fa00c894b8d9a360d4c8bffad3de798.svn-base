@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UserDAO">
+
+	<typeAlias alias="uservo"  type="com.soo.projectuser.Soo_Edu_UserVO" />
+	<typeAlias alias="userdao"  type="com.soo.projectuser.Soo_Edu_UserDAO" />
+	<!-- 회원가입 -->
+	<!-- <insert id="user_insert" parameterClass="uservo">
+ 	  INSERT INTO soo_edu_user_master
+	 	 (soo_user_name, soo_user_birth, soo_user_phone, soo_user_zipcode, soo_user_mail, soo_user_nick, soo_user_pw)
+	  VALUES
+	      (#soo_user_name#, #soo_user_birth#, #soo_user_phone#, #soo_user_zipcode#, #soo_user_mail#, #soo_user_nick#, #soo_user_pw#)
+    </insert>  -->
+    <insert id="user_insert" parameterClass="uservo">
+ 	  INSERT INTO soo_edu_user_master
+	 	 (soo_user_name, soo_user_birth)
+	  VALUES
+	      (#soo_user_name#, #soo_user_birth#)
+    </insert>
+</sqlMap>

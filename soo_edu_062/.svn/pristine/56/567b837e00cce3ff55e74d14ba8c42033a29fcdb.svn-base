@@ -1,0 +1,9 @@
+package com.soo.projectuser;
+
+import org.springframework.stereotype.Service;
+
+@Service("UserController")
+public interface Soo_Edu_UserService {
+	
+	public void user_insert(Soo_Edu_UserVO uservo) throws Exception;
+}

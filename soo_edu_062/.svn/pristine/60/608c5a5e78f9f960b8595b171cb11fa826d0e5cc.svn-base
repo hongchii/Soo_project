@@ -1,0 +1,47 @@
+package com.soo.projectboard;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+
+@Service("Soo_projectBoardService")
+public class Soo_projectBoardServiceImpl implements Soo_projectBoardService {
+
+	@Resource
+	Soo_projectBoardDAO SooprojectBoardDAO;
+	/*
+	@Override
+	public List<Soo_projectBoardVO> getBoardlist(Map<String, Integer> hashmap) throws Exception {
+		
+		System.out.println("리스트 서비스!!!!!!!!");
+		
+		return SooprojectBoardDAO.getBoardlist(hashmap);
+	}
+	*/
+	@Override
+	public List<Soo_projectBoardVO> getBoardlist() throws Exception {
+		
+		System.out.println("리스트 서비스!!!!!!!!");
+		
+		return SooprojectBoardDAO.getBoardlist();
+	}
+	
+	@Override
+	public int getListCount() {
+		
+		int res = 0;
+		
+		return res;
+	}
+	/*
+	@Override
+	public void board_insert(Soo_projectBoardVO boardvo) throws Exception {
+		
+		 SooprojectBoardDAO.board_insert(boardvo);
+	}
+	*/
+}

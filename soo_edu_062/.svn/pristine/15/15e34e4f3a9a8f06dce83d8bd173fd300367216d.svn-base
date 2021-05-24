@@ -1,0 +1,20 @@
+package com.soo.projectuser;
+
+import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+@Repository("UserDAO")
+public class Soo_Edu_UserDAO {
+	
+	@Autowired
+	private SqlMapClient sql;
+	
+	public void user_insert(Soo_Edu_UserVO uservo) throws SQLException {
+		//System.out.println("dao" + uservo);
+		sql.insert("UserDAO.user_insert", uservo);
+	}
+}

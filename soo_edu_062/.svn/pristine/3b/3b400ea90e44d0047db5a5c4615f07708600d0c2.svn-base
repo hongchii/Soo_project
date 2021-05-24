@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="soo_progect1">
+
+	<typeAlias alias="sooprojectBoardVO"  type="com.soo.projectboard.Soo_projectBoardVO" />
+	<typeAlias alias="sooprojectBoardDTO"  type="com.soo.projectboard.Soo_projectBoardDTO" />
+
+	<!-- 게시글 리스트 -->
+	<select id="selectBoardList" parameterClass="map" resultClass="sooprojectBoardVO">
+	SELECT
+		board_seq, board_title, board_reg_data, board_notice, board_del_yn,
+		board_writer_pass, board_content_text, board_writer_name,
+		board_mod_data, board_img_path, board_type
+	FROM board
+	</select>
+	
+</sqlMap>

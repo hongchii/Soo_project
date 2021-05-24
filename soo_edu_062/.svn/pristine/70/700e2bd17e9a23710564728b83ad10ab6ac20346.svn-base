@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SOO EDUㅣ공지사항</title>
+		<script src="resources/jquery/jquery-3.5.1.min.js"></script>
+		<script src="resources/jquery/jquery-ui.js"></script>
+		<script src="resources/js/common.js"></script>
+		<link rel="stylesheet" type="text/css" href="resources/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="header_wrap">
+				<div class="header">
+					<a href="index.html">HOME</a>
+				</div>
+			</div>
+			<div class="content_wrap">
+				<div class="sidebar">
+					<div class="logo">
+						<a href="index.html"><img src="resources/img/common/logo.png" /></a>
+					</div>
+					<div class="user">
+						<!-- 로그인 -->
+						<div class="login_wrap" style="display:none;">
+							<div class="input_wrap">
+								<input type="text" />
+								<input type="password" />
+							</div>
+							<button>로그인</button>
+							<a href="#none">· 회원가입</a>
+							<a href="#none">· ID/PW 찾기</a>
+						</div>
+						<!-- //로그인 -->
+						<!-- 접속정보 -->
+						<div class="user_status">
+							<div class="img">
+								<img src="resources/img/common/user.png" />	
+							</div>
+							<div class="info">
+								<p>환영합니다!</p>
+								<p class="name"><span>홍길동</span>님</p>
+								<p>최근접속일 <span>2020.04.30 10:48</span></p>
+							</div>
+						</div>
+						<!-- //접속정보 -->
+					</div>
+					<!-- 메뉴(활성화시 li태그에 클래스'on' 추가) -->
+					<div class="menu">
+						<ul>
+							<li>
+								<a href="board.html">공지사항</a>
+							</li>
+							<li>
+								<a href="#none">API</a>
+								<ul class="depth">
+									<li>
+										<a href="#none">파파고</a>
+									</li>
+									<li>
+										<a href="#none">카카오페이</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#none">문의하기</a>
+							</li>
+							<li>
+								<a href="#none">상품보기</a>
+							</li>
+							<li>
+								<a href="#none">마이페이지</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //메뉴 -->
+				</div>
+				<div class="contents">
+					<h1 class="title">공지사항</h1>
+					<div class="top_search">
+						<select>
+							<option>선택</option>
+						</select>
+						<input type="text" value="검색어를 입력해주세요." />
+						<a href="#none" class="btn">검색</a>
+					</div>
+					<div class="table_detail_wrap">
+						<table>
+							<caption>게시판 목록</caption>
+							<colgroup>
+								<col style="width:20%;" />
+								<col style="width:30%;" />
+								<col style="width:20%;" />
+								<col style="width:30%;" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>게시판 타입</th>
+									<td>
+										<select>
+											<option>공지사항</option>
+										</select>
+									</td>
+									<th>공지여부</th>
+									<td><input type="checkbox" checked /></td>
+								</tr>
+								<tr>
+									<th>작성자</th>
+									<td colspan="3">
+										<input type="text" />
+									</td>
+								</tr>
+								<tr>
+									<th>제목</th>
+									<td colspan="3">
+										<input type="text" />
+									</td>
+								</tr>
+								<tr>
+									<th>내용</th>
+									<td colspan="3">
+										<textarea>안녕하세요.</textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>파일</th>
+									<td colspan="2">
+										<input type="file" class="file_input" />
+									</td>
+									<td class="center">
+										<a href="#none" class="btn write">파일저장</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btn_wrap right">
+						<a href="#none" class="btn">목록으로</a>
+						<a href="#none" class="btn write">저장</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

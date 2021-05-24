@@ -1,0 +1,17 @@
+package com.soo.projectboard;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+@Service("Soo_projectBoardService")
+public interface Soo_projectBoardService {
+
+	public int getListCount();
+	//public List<Soo_projectBoardVO> getBoardlist(Map<String, Integer> hashmap) throws Exception;	
+	public List<Soo_projectBoardVO> getBoardlist() throws Exception;
+	
+	
+	
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="soo_progect1">
+
+	<typeAlias alias="sooprojectBoardVO"  type="com.soo.projectboard.Soo_projectBoardVO" />
+	<typeAlias alias="sooprojectBoardDTO"  type="com.soo.projectboard.Soo_projectBoardDTO" />
+<!-- 
+private int board_seq;
+   private String board_content_text;
+   private String board_title;
+   private String board_writer_name;
+   private String board_notice;
+   private String board_img_path;
+   private String board_del_yn;
+   private Date board_reg_date;
+   private Date board_mod_date;
+   private int board_type;
+   private String board_writer_pass;
+ -->
+	
+	<!-- 게시글 리스트 -->
+<!-- 	<select id="selectBoardList" parameterClass="map" resultClass="sooprojectBoardVO">
+	SELECT
+		board_seq, board_content_text,board_title , board_writer_name, board_notice, board_img_path,
+		board_del_yn, board_type, board_writer_pass 
+	FROM Soo_Edu_Board
+	</select> -->
+	
+   <select id="boardlist" resultClass="sooprojectBoardVO">
+	   SELECT
+	         board_seq, board_title,  board_reg_date,     board_notice,        board_del_yn,
+	         board_writer_pass,       board_content_text, board_writer_name,   
+	         board_img_path,          board_type      
+	    FROM   Soo_Edu_Board ORDER BY board_seq desc LIMIT 0, 5
+   </select>
+   
+   <select id="getListCount" resultClass="int">
+   		select count(*) from Soo_Edu_Board
+   </select>
+</sqlMap>

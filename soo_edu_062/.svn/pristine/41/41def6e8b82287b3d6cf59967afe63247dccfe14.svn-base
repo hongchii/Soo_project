@@ -1,0 +1,18 @@
+package com.soo.projectuser;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+@Service("UserService")
+public class Soo_Edu_UserServiceImp implements Soo_Edu_UserService {
+
+	@Resource (name = "UserDAO")
+	private Soo_Edu_UserDAO dao;
+
+	@Override
+	public void user_insert(Soo_Edu_UserVO uservo) throws Exception {
+		
+		dao.user_insert(uservo);
+	}
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="soo_progect1">
+
+	<typeAlias alias="sooprojectBoardVO"  type="com.soo.projectboard.Soo_projectBoardVO" />
+	<typeAlias alias="sooprojectBoardDTO"  type="com.soo.projectboard.Soo_projectBoardDTO" />
+	<typeAlias alias="criteria"  type="com.soo.projectboard.Criteria" />
+	
+   <select id="boardlist" parameterClass="criteria" resultClass="hashmap">
+	   SELECT
+	         board_seq, board_title, board_reg_date, board_notice, board_del_yn,
+	         board_writer_pass, board_content_text, board_writer_name,   
+	         board_img_path, board_type      
+	    FROM   Soo_Edu_Board WHERE board_del_yn = 'n' ORDER BY board_seq desc LIMIT #pageStart#, #perPageNum#
+   </select>
+   
+   <select id="getListCount" resultClass="int">
+   		select count(*) from Soo_Edu_Board where board_del_yn = 'n'
+   </select>
+   
+   <insert id="boardinsert" parameterClass="sooprojectBoardVO">
+   		INSERT INTO Soo_Edu_Board
+   			(board_title, board_reg_date, board_notice, board_del_yn, board_writer_pass, 
+   			board_content_text, board_writer_name, board_type)
+   		VALUES
+   			(#board_title#, now(), #board_notice#, #board_del_yn#,
+   			#board_writer_pass#, #board_content_text#, #board_writer_name#, #board_type#)	
+   </insert>
+   
+   <select id="view" parameterClass="int" resultClass="sooprojectBoardVO">
+		SELECT 
+			board_seq, board_type, board_notice, board_writer_name, board_title, board_content_text 
+		FROM Soo_Edu_Board where board_seq = #board_seq#
+   </select>
+   
+   <update id="boardupdate" parameterClass="sooprojectBoardVO" >
+  		UPDATE Soo_Edu_Board SET board_content_text = #board_content_text#, board_mod_date = now()
+  			WHERE board_seq = #board_seq# 
+   </update>
+   
+   <update id="boardDelete" parameterClass="int">
+   		UPDATE Soo_Edu_Board SET board_del_yn = 'y' WHERE board_seq = #board_seq#
+   </update>  
+</sqlMap>

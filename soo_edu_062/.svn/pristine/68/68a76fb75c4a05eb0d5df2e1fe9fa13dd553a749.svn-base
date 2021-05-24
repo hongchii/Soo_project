@@ -1,0 +1,76 @@
+package com.soo.projectmain;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
+@Controller
+public class Soo_projectMainController {
+	
+	@Resource(name = "Soo_projectMainService")
+	private Soo_projectMainService service;
+	
+	
+	@RequestMapping(value = "/soo_project_main/soo_project_main.do")
+	public String soo_project_main(ModelMap model, Soo_projectMainVO vo) throws Exception {
+		
+		return "views/sooproject_main";
+		
+	}
+	@RequestMapping(value = "/test/mvcPattern.do")
+	public String test() throws Exception{
+		
+//		return "views/user/list";
+		return "views/board/board_list";
+	}
+	
+	@RequestMapping(value = "/edu/index.do")
+	public String edu_index() throws Exception{
+		
+		return "views/edu/index";
+	}
+	
+	@RequestMapping(value = "/edu/board.do")
+	public String edu_board() throws Exception{
+		
+		return "views/edu/board";
+	}
+	
+	
+	@RequestMapping(value = "/edu/papago.do")
+	public String edu_papago() throws Exception{
+		
+		return "views/edu/papago";
+	}
+	
+	@RequestMapping(value = "/edu/shop.do")
+	public String edu_shop() throws Exception{
+		
+		return "views/edu/shop";
+	}
+	
+	@RequestMapping(value = "/edu/detail.do")
+	public String edu_detail() throws Exception{
+		
+		return "views/edu/detail";
+	}
+	
+	@RequestMapping(value = "/edu/modify.do")
+	public String edu_modify() throws Exception{
+		
+		return "views/edu/modify";
+	}
+	
+	@RequestMapping(value = "/edu/write.do")
+	public String edu_write() throws Exception{
+		
+		return "views/edu/write";
+	}
+	
+
+	
+}

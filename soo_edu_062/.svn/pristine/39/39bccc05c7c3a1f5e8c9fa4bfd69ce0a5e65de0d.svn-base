@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="UserDAO">
+
+	<typeAlias alias="uservo"  type="com.soo.projectuser.Soo_Edu_UserVO" />
+	<!-- 회원가입 -->
+	<insert id="user_insert" parameterClass="uservo">
+ 	  INSERT INTO soo_edu_user_master
+	 	 (soo_user_name, soo_user_birth, soo_user_phone, soo_user_zipcode, soo_user_addr1, soo_user_addr2, soo_user_mail, soo_user_nick, soo_user_pw)
+	  VALUES
+	      (#soo_user_name#, #soo_user_birth#, #soo_user_phone#, #soo_user_zipcode#, #soo_user_addr1#, #soo_user_addr2#, #soo_user_mail#, #soo_user_nick#, #soo_user_pw#)
+    </insert>  
+	<!-- 이메일 중복 체크 -->
+    <select id="get_mail" parameterClass="String" resultClass="int">
+    	SELECT count(soo_user_mail) user_mail_cnt FROM soo_edu_user_master WHERE soo_user_mail = #soo_user_mail#
+    </select> 
+    <!-- 핸드폰 중복 체크 -->
+    <select id="get_phone" parameterClass="String" resultClass="int">
+    	SELECT count(soo_user_phone) user_phone_cnt FROM soo_edu_user_master WHERE soo_user_phone = #soo_user_phone#
+    </select> 
+	<!-- 로그인 -->   
+  	<select id="selectUser" parameterClass="String" resultClass="uservo">
+		select * from soo_edu_user_master where soo_user_mail = #soo_user_mail#
+	</select>
+</sqlMap>

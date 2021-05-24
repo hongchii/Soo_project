@@ -1,0 +1,43 @@
+package com.soo.projectuser;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class Soo_Edu_UserController {
+
+	@Resource(name = "UserDAO")
+	private Soo_Edu_UserDAO dao;
+	
+	// 회원가입 get
+		@RequestMapping(value = "/edu/register.do")
+		public String getRegister() throws Exception {
+		
+			
+			return "views/edu/soo_edu_user_insert";
+		}
+		
+		// 회원가입 post
+		@RequestMapping(value = "/user/registers.do", method = RequestMethod.POST)
+		public String postRegister(Soo_Edu_UserVO uservo) throws Exception {
+			/* logger.info("post register"); */
+			/*
+			System.out.println("post register");
+			System.out.println(uservo);
+			*/
+			dao.user_insert(uservo);
+			
+			return  "redirect:/";
+		}
+		
+		//주소검색
+		@RequestMapping(value ="/edu/jusoPopup.do")
+		public String josoPopup() throws Exception {
+			
+			return "views/edu/jusoPopup";
+		}
+	
+}
